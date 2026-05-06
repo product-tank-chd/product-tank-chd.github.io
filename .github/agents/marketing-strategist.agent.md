@@ -1,6 +1,6 @@
 ---
 description: "Use when planning a multi-channel marketing motion that spans growth experiments, content, SEO, and outbound. Picks the right skills, sequences them, and hands work off — does NOT execute scripts directly."
-tools: [read, search, todo, agent]
+tools: [vscode/getProjectSetupInfo, vscode/installExtension, vscode/memory, vscode/newWorkspace, vscode/resolveMemoryFileUri, vscode/runCommand, vscode/vscodeAPI, vscode/extensions, vscode/askQuestions, execute/runNotebookCell, execute/getTerminalOutput, execute/killTerminal, execute/sendToTerminal, execute/createAndRunTask, execute/runInTerminal, execute/runTests, read/getNotebookSummary, read/problems, read/readFile, read/viewImage, read/readNotebookCellOutput, read/terminalSelection, read/terminalLastCommand, agent/runSubagent, edit/createDirectory, edit/createFile, edit/createJupyterNotebook, edit/editFiles, edit/editNotebook, edit/rename, search/changes, search/codebase, search/fileSearch, search/listDirectory, search/textSearch, search/usages, web/fetch, web/githubRepo, web/githubTextSearch, browser/openBrowserPage, browser/readPage, browser/screenshotPage, browser/navigatePage, browser/clickElement, browser/dragElement, browser/hoverElement, browser/typeInPage, browser/runPlaywrightCode, browser/handleDialog, com.atlassian/atlassian-mcp-server/search, com.microsoft/azure/search, azure-mcp/search, todo]
 model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
 ---
 
