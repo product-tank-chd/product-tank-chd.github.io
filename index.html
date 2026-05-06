@@ -3,363 +3,429 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="ProductTank Chandigarh community homepage" />
+    <meta name="description" content="ProductTank Chandigarh — a community for product managers, engineering leaders, founders, and builders in Chandigarh and the Tricity region." />
     <title>ProductTank Chandigarh</title>
     <style>
       :root {
-        --bg: #f6f2ff;
-        --bg-2: #efe8ff;
-        --text: #1f163d;
-        --muted: #5d5772;
-        --brand: #1e0d5f;
-        --brand-2: #3d1f9e;
-        --card: rgba(255, 255, 255, 0.72);
-        --border: rgba(30, 13, 95, 0.12);
-        --shadow: 0 24px 80px rgba(30, 13, 95, 0.14);
+        --bg: #06040f;
+        --surface: rgba(255, 255, 255, 0.04);
+        --surface-hi: rgba(255, 255, 255, 0.07);
+        --text: #ede9fe;
+        --muted: rgba(237, 233, 254, 0.52);
+        --brand: #a78bfa;
+        --brand-dim: #7c3aed;
+        --border: rgba(167, 139, 250, 0.18);
+        --border-hi: rgba(255, 255, 255, 0.09);
+        --radius: 20px;
+        --radius-lg: 28px;
       }
 
-      * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
+      /* ── Reset / base ────────────────────────────── */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
       body {
-        margin: 0;
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: var(--bg);
         color: var(--text);
-        background:
-          radial-gradient(circle at top left, rgba(61, 31, 158, 0.18), transparent 28%),
-          radial-gradient(circle at top right, rgba(0, 194, 181, 0.14), transparent 22%),
-          linear-gradient(180deg, #fbf9ff 0%, var(--bg) 45%, #fff 100%);
+        min-height: 100dvh;
       }
 
-      .wrap {
-        width: min(1120px, calc(100% - 32px));
+      /* ── Grain texture ────────────────────────────── */
+      body::after {
+        content: "";
+        position: fixed; inset: 0; z-index: 999; pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      }
+
+      /* ── Utility ──────────────────────────────────── */
+      .wrap { width: min(1140px, calc(100% - 40px)); margin: 0 auto; }
+      img { display: block; max-width: 100%; }
+      a { text-decoration: none; color: inherit; }
+
+      /* ── Sticky pill nav ──────────────────────────── */
+      .nav-wrap {
+        position: sticky; top: 14px; z-index: 200;
+        width: min(1140px, calc(100% - 40px));
         margin: 0 auto;
       }
-
-      header {
-        padding: 28px 0 0;
-      }
-
-      .nav {
+      nav.pill-nav {
         display: flex;
+        align-items: center;
         justify-content: space-between;
-        align-items: center;
-        gap: 16px;
-        padding: 12px 0 28px;
+        gap: 12px;
+        background: rgba(8, 5, 20, 0.75);
+        backdrop-filter: blur(24px) saturate(160%);
+        -webkit-backdrop-filter: blur(24px) saturate(160%);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 8px 8px 8px 22px;
+        margin-top: 14px;
       }
-
       .brand {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        text-decoration: none;
-        color: inherit;
+        display: flex; align-items: center; gap: 10px;
+        flex-shrink: 0;
       }
-
       .brand img {
-        width: 148px;
-        height: auto;
-        display: block;
+        width: 120px; height: auto;
+        filter: brightness(0) invert(1);
       }
-
-      .nav-links {
-        display: flex;
-        gap: 18px;
-        flex-wrap: wrap;
-      }
-
-      .nav-links a, .btn, .link {
-        text-decoration: none;
-        color: inherit;
-      }
-
+      .nav-links { display: flex; align-items: center; gap: 2px; flex-wrap: wrap; }
       .nav-links a {
         color: var(--muted);
-        font-weight: 600;
-      }
-
-      .hero {
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 28px;
-        padding: 26px 0 34px;
-        align-items: center;
-      }
-
-      .hero h1 {
-        margin: 0;
-        font-size: clamp(2.7rem, 6vw, 5.4rem);
-        line-height: 0.94;
-        letter-spacing: -0.05em;
-        color: var(--brand);
-      }
-
-      .lead {
-        margin: 18px 0 0;
-        font-size: 1.12rem;
-        line-height: 1.75;
-        color: var(--muted);
-        max-width: 60ch;
-      }
-
-      .cta-row {
-        display: flex;
-        gap: 14px;
-        flex-wrap: wrap;
-        margin-top: 28px;
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 14px 18px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 8px 14px;
         border-radius: 999px;
-        font-weight: 700;
-        border: 1px solid transparent;
+        transition: background 0.15s, color 0.15s;
       }
-
-      .btn.primary {
-        background: var(--brand);
-        color: #fff;
-        box-shadow: 0 14px 30px rgba(30, 13, 95, 0.18);
+      .nav-links a:hover { background: var(--surface-hi); color: var(--text); }
+      .nav-cta {
+        background: var(--brand-dim) !important;
+        color: #fff !important;
+        font-weight: 600 !important;
+        padding: 10px 18px !important;
       }
+      .nav-cta:hover { background: #6d28d9 !important; }
 
-      .btn.secondary {
-        background: rgba(255, 255, 255, 0.72);
-        border-color: var(--border);
-        color: var(--brand);
-      }
-
-      .hero-card, .panel {
-        background: var(--card);
-        backdrop-filter: blur(14px);
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow);
-      }
-
-      .hero-card {
-        border-radius: 28px;
-        padding: 28px;
-      }
-
-      .hero-card h2, .panel h2 {
-        margin: 0 0 10px;
-        color: var(--brand);
-        font-size: 1.35rem;
-      }
-
-      .hero-card p, .panel p, .panel li {
-        color: var(--muted);
-        line-height: 1.7;
-      }
-
-      .stats {
-        display: grid;
-        gap: 14px;
-        margin-top: 20px;
-      }
-
-      .stat {
-        border-radius: 18px;
-        padding: 16px;
-        background: rgba(255, 255, 255, 0.62);
-        border: 1px solid rgba(30, 13, 95, 0.08);
-      }
-
-      .stat strong {
-        display: block;
-        color: var(--brand);
-        margin-bottom: 6px;
-      }
-
-      main {
-        padding: 8px 0 72px;
-      }
-
-      .grid-2 {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 22px;
-        margin-top: 22px;
-      }
-
-      .panel {
-        border-radius: 24px;
-        padding: 24px;
-      }
-
-      .panel ul {
-        margin: 14px 0 0;
-        padding-left: 18px;
-      }
-
-      .links {
-        display: grid;
-        gap: 12px;
-        margin-top: 16px;
-      }
-
-      .resource {
+      /* ── Full-bleed monument hero ─────────────────── */
+      .hero {
+        position: relative;
+        min-height: 92dvh;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 16px 18px;
-        border-radius: 18px;
-        background: rgba(255, 255, 255, 0.7);
-        border: 1px solid rgba(30, 13, 95, 0.08);
+        flex-direction: column;
+        justify-content: flex-end;
+        overflow: hidden;
+        border-radius: var(--radius-lg);
+        margin: 16px auto 0;
+        width: min(1140px, calc(100% - 40px));
       }
-
-      .resource span {
-        color: var(--muted);
+      .hero-bg { position: absolute; inset: 0; z-index: 0; }
+      .hero-bg img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        object-position: center 12%;
+        filter: brightness(0.42) saturate(0.65);
       }
-
-      .resource strong {
+      .hero-bg::after {
+        content: "";
+        position: absolute; inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(6, 4, 15, 0.08) 0%,
+          rgba(6, 4, 15, 0.05) 35%,
+          rgba(6, 4, 15, 0.72) 68%,
+          rgba(6, 4, 15, 0.97) 100%
+        );
+      }
+      .hero-content {
+        position: relative; z-index: 1;
+        padding: 64px 64px 60px;
+      }
+      .hero-eyebrow {
+        display: inline-flex; align-items: center; gap: 10px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--brand);
+        margin-bottom: 22px;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        width: 22px; height: 1.5px;
+        background: var(--brand);
         display: block;
+        flex-shrink: 0;
+      }
+      .hero h1 {
+        font-size: clamp(2.8rem, 7.5vw, 6.8rem);
+        line-height: 0.9;
+        letter-spacing: -0.045em;
+        font-weight: 800;
+        color: #fff;
+        max-width: 13ch;
+        margin-bottom: 26px;
+      }
+      .hero h1 em {
+        font-style: normal;
         color: var(--brand);
       }
+      .hero-sub {
+        font-size: 1rem;
+        line-height: 1.78;
+        color: rgba(255, 255, 255, 0.55);
+        max-width: 50ch;
+        margin-bottom: 38px;
+      }
+      .hero-actions {
+        display: flex; gap: 10px; flex-wrap: wrap;
+        margin-bottom: 52px;
+      }
+      .btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        font-family: inherit; font-size: 0.88rem; font-weight: 600;
+        padding: 13px 22px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: transform 0.14s, box-shadow 0.14s, background 0.14s;
+      }
+      .btn:hover { transform: translateY(-1px); }
+      .btn.primary {
+        background: var(--brand-dim);
+        color: #fff;
+        box-shadow: 0 10px 30px rgba(124, 58, 237, 0.36);
+      }
+      .btn.primary:hover { background: #6d28d9; box-shadow: 0 14px 40px rgba(109, 40, 217, 0.48); }
+      .btn.ghost {
+        background: rgba(255, 255, 255, 0.07);
+        border-color: rgba(255, 255, 255, 0.13);
+        color: #fff;
+        backdrop-filter: blur(8px);
+      }
+      .btn.ghost:hover { background: rgba(255, 255, 255, 0.13); }
 
-      footer {
-        padding: 0 0 34px;
-        color: var(--muted);
-        font-size: 0.95rem;
+      /* ── Hero stat strip ──────────────────────────── */
+      .hero-stats {
+        display: flex; gap: 44px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 30px;
+      }
+      .hero-stat-num {
+        font-size: 2.7rem; font-weight: 800;
+        letter-spacing: -0.04em; color: #fff; line-height: 1;
+      }
+      .hero-stat-label {
+        margin-top: 6px;
+        font-size: 0.7rem; font-weight: 600;
+        letter-spacing: 0.1em; text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.38);
       }
 
-      @media (max-width: 860px) {
-        .hero, .grid-2 {
-          grid-template-columns: 1fr;
-        }
+      /* ── Bento grid ───────────────────────────────── */
+      .bento {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 12px;
+        width: min(1140px, calc(100% - 40px));
+        margin: 16px auto 72px;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 32px;
+        transition: border-color 0.2s;
+      }
+      .card:hover { border-color: rgba(167, 139, 250, 0.38); }
+      .card-about   { grid-column: span 7; }
+      .card-mission { grid-column: span 5; }
+      .card-vision  { grid-column: span 5; }
+      .card-links   { grid-column: span 7; }
 
-        .nav {
-          flex-direction: column;
-          align-items: flex-start;
-        }
+      .card-label {
+        display: block;
+        font-size: 0.68rem; font-weight: 700;
+        letter-spacing: 0.15em; text-transform: uppercase;
+        color: var(--brand);
+        margin-bottom: 18px;
+      }
+      .card p {
+        font-size: 0.95rem; line-height: 1.78;
+        color: var(--muted);
+      }
+      .card p + p { margin-top: 12px; }
+      .card ul {
+        margin-top: 16px; padding: 0;
+        list-style: none;
+        display: flex; flex-direction: column; gap: 10px;
+      }
+      .card li {
+        font-size: 0.88rem; line-height: 1.65;
+        color: var(--muted);
+        padding-left: 20px;
+        position: relative;
+      }
+      .card li::before {
+        content: "→";
+        position: absolute; left: 0; top: 1px;
+        color: var(--brand); font-size: 0.72rem;
+      }
+
+      /* ── Resource links ───────────────────────────── */
+      .resource-list { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
+      .resource {
+        display: flex; align-items: center; justify-content: space-between; gap: 16px;
+        padding: 14px 18px;
+        border-radius: 14px;
+        background: var(--surface-hi);
+        border: 1px solid var(--border-hi);
+        transition: background 0.14s, border-color 0.2s;
+      }
+      .resource:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--border); }
+      .resource strong { display: block; color: var(--text); font-size: 0.88rem; font-weight: 600; }
+      .resource span { color: var(--muted); font-size: 0.78rem; }
+      .resource-arrow {
+        width: 26px; height: 26px;
+        display: flex; align-items: center; justify-content: center;
+        background: rgba(167, 139, 250, 0.12);
+        border-radius: 50%;
+        color: var(--brand); font-size: 0.82rem;
+        flex-shrink: 0;
+      }
+
+      /* ── Footer ───────────────────────────────────── */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 28px 0;
+        color: var(--muted);
+        font-size: 0.8rem;
+        text-align: center;
+      }
+
+      /* ── Responsive ───────────────────────────────── */
+      @media (max-width: 900px) {
+        .hero-content { padding: 40px 32px 40px; }
+        .card-about, .card-mission, .card-vision, .card-links { grid-column: span 12; }
+        nav.pill-nav { border-radius: 18px; }
+        .hero-stats { gap: 28px; }
+      }
+      @media (max-width: 560px) {
+        .hero h1 { letter-spacing: -0.03em; }
+        .hero-stats { flex-wrap: wrap; gap: 20px; }
+        .hero-stat-num { font-size: 2.1rem; }
+        nav.pill-nav { padding: 10px 10px 10px 16px; }
       }
     </style>
   </head>
   <body>
-    <header class="wrap">
-      <div class="nav">
+
+    <!-- ── Sticky pill nav ──────────────────────────── -->
+    <div class="nav-wrap">
+      <nav class="pill-nav" aria-label="Primary navigation">
         <a class="brand" href="#top" aria-label="ProductTank Chandigarh home">
           <img src="assets/logos/producttank-logo-dark.png" alt="ProductTank Chandigarh" />
         </a>
-        <nav class="nav-links" aria-label="Primary navigation">
+        <div class="nav-links">
           <a href="#about">About</a>
           <a href="#mission">Mission</a>
           <a href="#vision">Vision</a>
           <a href="#links">Links</a>
-        </nav>
-      </div>
-    </header>
+          <a class="nav-cta" href="https://www.meetup.com/producttank-chandigarh/" target="_blank" rel="noreferrer">Join on Meetup</a>
+        </div>
+      </nav>
+    </div>
 
-    <main id="top" class="wrap">
-      <section class="hero">
-        <div>
-          <h1>ProductTank Chandigarh</h1>
-          <p class="lead">
-            A community for product managers, engineering leaders, founders, and builders in Chandigarh and the
-            Tricity region. We host conversations that help people learn from real product work, share practical
-            experience, and build stronger product teams.
-          </p>
-          <div class="cta-row">
-            <a class="btn primary" href="https://www.meetup.com/producttank-chandigarh/" target="_blank" rel="noreferrer">Join on Meetup</a>
-            <a class="btn secondary" href="https://github.com/product-tank-chandigarh/product-tank-chd.github.io" target="_blank" rel="noreferrer">View GitHub Repo</a>
+    <!-- ── Full-bleed hero ──────────────────────────── -->
+    <section class="hero" id="top">
+      <div class="hero-bg">
+        <img
+          src="assets/Open_Hand_Monument_in_Chandigarh.jpg"
+          alt=""
+          role="presentation"
+        />
+      </div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">ProductTank Chandigarh &nbsp;·&nbsp; Mind the Product</div>
+        <h1>Become a sharper <em>product leader</em> in Chandigarh</h1>
+        <p class="hero-sub">
+          A community for product managers, engineering leaders, founders, and builders
+          across Chandigarh and the Tricity region.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://www.meetup.com/producttank-chandigarh/" target="_blank" rel="noreferrer">Join on Meetup</a>
+          <a class="btn ghost" href="#links">Browse past talks</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num">850+</div>
+            <div class="hero-stat-label">Members</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">14</div>
+            <div class="hero-stat-label">Events held</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">Free</div>
+            <div class="hero-stat-label">Always</div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <aside class="hero-card">
-          <h2>What we do</h2>
-          <p>
-            ProductTank is a global Mind the Product community format. Locally, we bring that spirit to Chandigarh
-            through events, speaker sessions, peer learning, and open discussions about building better products.
-          </p>
-          <div class="stats">
-            <div class="stat">
-              <strong>For product people</strong>
-              Talks, panels, and conversations for PMs and product teams.
+    <!-- ── Bento grid ────────────────────────────────── -->
+    <div class="bento">
+
+      <article id="about" class="card card-about">
+        <span class="card-label">About</span>
+        <p>
+          ProductTank is a community-led meetup brand from Mind the Product. It exists to help
+          product professionals learn from one another, exchange ideas, and improve how products
+          are discovered, designed, built, and grown.
+        </p>
+        <p>
+          ProductTank Chandigarh carries that idea forward with local events focused on practical
+          insights, thoughtful conversation, and a healthy mix of product, engineering, and
+          leadership perspectives.
+        </p>
+      </article>
+
+      <article id="mission" class="card card-mission">
+        <span class="card-label">Mission</span>
+        <p>To create a welcoming local space where product builders can share real experiences, learn together, and grow stronger product practices in the Chandigarh ecosystem.</p>
+        <ul>
+          <li>Enable peer learning across product, design, engineering, and leadership</li>
+          <li>Highlight practical stories from local and visiting speakers</li>
+          <li>Build a community that is inclusive, useful, and consistent</li>
+        </ul>
+      </article>
+
+      <article id="vision" class="card card-vision">
+        <span class="card-label">Vision</span>
+        <p>
+          To make ProductTank Chandigarh a trusted community hub for product thinking in North India,
+          known for quality conversations, meaningful connections, and events people want to return to.
+        </p>
+        <ul>
+          <li>Support a stronger product culture in Chandigarh</li>
+          <li>Connect the local community with global ProductTank ideas</li>
+          <li>Help more people build products with clarity, empathy, and evidence</li>
+        </ul>
+      </article>
+
+      <article id="links" class="card card-links">
+        <span class="card-label">Links</span>
+        <div class="resource-list">
+          <a class="resource" href="https://github.com/product-tank-chandigarh/product-tank-chd.github.io" target="_blank" rel="noreferrer">
+            <div>
+              <strong>GitHub Repository</strong>
+              <span>Source for this homepage and community assets</span>
             </div>
-            <div class="stat">
-              <strong>For builders</strong>
-              Practical discussion across design, engineering, research, and go-to-market.
+            <div class="resource-arrow">↗</div>
+          </a>
+          <a class="resource" href="https://www.meetup.com/producttank-chandigarh/" target="_blank" rel="noreferrer">
+            <div>
+              <strong>Meetup.com</strong>
+              <span>Join the community and RSVP for events</span>
             </div>
-            <div class="stat">
-              <strong>For the community</strong>
-              A welcoming space to connect, learn, and contribute.
+            <div class="resource-arrow">↗</div>
+          </a>
+          <a class="resource" href="https://www.mindtheproduct.com/producttank/" target="_blank" rel="noreferrer">
+            <div>
+              <strong>ProductTank Global</strong>
+              <span>Learn more about the wider ProductTank network</span>
             </div>
-          </div>
-        </aside>
-      </section>
+            <div class="resource-arrow">↗</div>
+          </a>
+        </div>
+      </article>
 
-      <section id="about" class="grid-2">
-        <article class="panel">
-          <h2>About ProductTank</h2>
-          <p>
-            ProductTank is a community-led meetup brand from Mind the Product. It exists to help product professionals
-            learn from one another, exchange ideas, and improve how products are discovered, designed, built, and
-            grown.
-          </p>
-          <p>
-            ProductTank Chandigarh carries that idea forward with local events focused on practical insights,
-            thoughtful conversation, and a healthy mix of product, engineering, and leadership perspectives.
-          </p>
-        </article>
+    </div>
 
-        <article id="mission" class="panel">
-          <h2>Mission</h2>
-          <p>To create a welcoming local space where product builders can share real experiences, learn together, and grow stronger product practices in the Chandigarh ecosystem.</p>
-          <ul>
-            <li>Enable peer learning across product, design, engineering, and leadership</li>
-            <li>Highlight practical stories from local and visiting speakers</li>
-            <li>Build a community that is inclusive, useful, and consistent</li>
-          </ul>
-        </article>
-      </section>
-
-      <section id="vision" class="grid-2">
-        <article class="panel">
-          <h2>Vision</h2>
-          <p>
-            To make ProductTank Chandigarh a trusted community hub for product thinking in North India, known for
-            quality conversations, meaningful connections, and the kind of events people want to return to.
-          </p>
-          <ul>
-            <li>Support a stronger product culture in Chandigarh</li>
-            <li>Connect the local community with global ProductTank ideas</li>
-            <li>Help more people build products with clarity, empathy, and evidence</li>
-          </ul>
-        </article>
-
-        <article id="links" class="panel">
-          <h2>Links</h2>
-          <div class="links">
-            <a class="resource" href="https://github.com/product-tank-chandigarh/product-tank-chd.github.io" target="_blank" rel="noreferrer">
-              <div>
-                <strong>GitHub Repository</strong>
-                <span>Source for this homepage and community assets</span>
-              </div>
-              <span>Open</span>
-            </a>
-            <a class="resource" href="https://www.meetup.com/producttank-chandigarh/" target="_blank" rel="noreferrer">
-              <div>
-                <strong>Meetup.com</strong>
-                <span>Join the community and RSVP for events</span>
-              </div>
-              <span>Join</span>
-            </a>
-            <a class="resource" href="https://www.mindtheproduct.com/producttank/" target="_blank" rel="noreferrer">
-              <div>
-                <strong>ProductTank Global</strong>
-                <span>Learn more about the wider ProductTank network</span>
-              </div>
-              <span>Explore</span>
-            </a>
-          </div>
-        </article>
-      </section>
-    </main>
-
+    <!-- ── Footer ────────────────────────────────────── -->
     <footer class="wrap">
       <p>ProductTank Chandigarh is a community initiative aligned with the global Mind the Product ecosystem.</p>
     </footer>
+
   </body>
 </html>
