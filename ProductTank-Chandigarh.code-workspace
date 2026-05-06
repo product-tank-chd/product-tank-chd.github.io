@@ -1,0 +1,32 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.associations": {
+      "*.md": "markdown"
+    },
+    "editor.wordWrap": "on",
+    "editor.lineNumbers": "on",
+    "markdown.preview.openMarkdownLinks": "inEditor",
+    "explorer.sortOrder": "default",
+    "workbench.colorTheme": "Dark Modern",
+    "editor.fontSize": 14,
+    "editor.renderWhitespace": "none",
+    "files.exclude": {
+      "**/.git": true,
+      "**/.DS_Store": true
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "yzhang.markdown-all-in-one",
+      "davidanson.vscode-markdownlint",
+      "streetsidesoftware.code-spell-checker",
+      "bierner.markdown-emoji",
+      "shd101wyy.markdown-preview-enhanced"
+    ]
+  }
+}
