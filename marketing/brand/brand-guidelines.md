@@ -104,3 +104,12 @@ Google Fonts links:
 - [ ] Email header banner (600×200)
 
 > Use Canva, Figma, or Adobe Express with the brand colours and fonts above.
+
+## Provided Templates
+
+The following source templates have been added to the repo for reuse and editing:
+
+| File | Purpose |
+| --- | --- |
+| `assets/templates/producttank-social-templates.odp` | Social media template deck provided by ProductTank |
+| `assets/templates/producttank-slide-template-2026.odp` | Slide template deck provided by ProductTank |

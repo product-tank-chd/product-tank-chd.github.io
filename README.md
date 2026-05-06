@@ -50,6 +50,10 @@ ProductTank-Chandigarh/
 │       ├── brand-guidelines.md      ← Colours, fonts, tone of voice
 │       └── asset-checklist.md       ← Graphic assets needed per event
 │
+├── assets/
+│   ├── logos/                       ← Brand logo files
+│   └── templates/                   ← ProductTank presentation/social templates
+│
 ├── venue-logistics/
 │   ├── venue-checklist.md           ← What to confirm with the venue
 │   ├── av-tech-checklist.md         ← AV/tech requirements
@@ -75,6 +79,13 @@ ProductTank-Chandigarh/
 | Mind the Product | https://www.mindtheproduct.com/ |
 | LinkedIn Group | *(add link)* |
 | Twitter/X | *(add handle)* |
+
+## Asset Files
+
+- `assets/logos/producttank-logo-dark.png`
+- `assets/logos/producttank-logo-white.png`
+- `assets/templates/producttank-social-templates.odp`
+- `assets/templates/producttank-slide-template-2026.odp`
 
 ---
 

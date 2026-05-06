@@ -7,6 +7,11 @@ Place logo files in this folder. Two variants are provided:
 | `producttank-logo-dark.png` | Dark logo (navy text on white/light background) — use on light backgrounds, slide headers, print |
 | `producttank-logo-white.png` | White logo (white text on dark background) — use on dark/coloured backgrounds, event banners |
 
+## Included files
+
+- `producttank-logo-dark.png`
+- `producttank-logo-white.png`
+
 ## Colour in logo
 
 - Primary brand colour: `#1E0D5F` (deep navy purple)
